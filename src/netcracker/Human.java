@@ -48,7 +48,9 @@ public class Human {
     public void setAddress(Address address) {
         this.address = address;
     }
-    //Возвращает всю информацию о человеке в string
+    /*
+      Возвращает всю информацию о человеке в string
+    */
     public String info(){
         String result = "Имя: " + getName() +
                         "\nФамилия: " + getLastName() +

@@ -33,7 +33,7 @@ public class Main {
         table.add(bcd);
         Calendar after = new GregorianCalendar(1960, 0, 1);
         Calendar before = new GregorianCalendar(2015, 0, 1);
-        
+
         System.out.println(table.searchOld().info());
         System.out.println();
         System.out.println(table.searchYoung().info());
@@ -43,14 +43,19 @@ public class Main {
         System.out.println(table.searchLastName("Сталин").infoToString());
         System.out.println();
         System.out.println(table.searchByBirth(after, before).infoToString());
-        
+
+
+
         QuadraticEquation qe = new QuadraticEquation(1,-28,160);
         System.out.println(qe.roots());
-        
+
+
+
         Dice dc = new Dice(3,2);
         dc.startGame();
-        */
 
+        table.searchHumanStreet();
+        */
 
     }
 }

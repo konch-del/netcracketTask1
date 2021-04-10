@@ -10,7 +10,9 @@ public class QuadraticEquation {
         this.b = b;
         this.c = c;
     }
-    // Внутренний класс для вычисления дискриминанта
+    /*
+       Внутренний класс для вычисления дискриминанта
+    */
     class Discriminant{
         //Значение дискриминанта
         private double discriminant;
@@ -23,7 +25,9 @@ public class QuadraticEquation {
             this.discriminant = Math.pow(b, 2) - 4 * a * c;
         }
     }
-    //Вычисление корней
+    /*
+       Вычисление корней
+    */
     public String roots(){
         Discriminant d = new Discriminant();
         d.calculate(a, b, c);

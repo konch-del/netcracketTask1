@@ -2,6 +2,8 @@ package netcracker;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+
 /*
     Класс, наследуемый от ArrayList и используемый для обработки массива объектов Human
 */
@@ -19,7 +21,9 @@ public class ArrayHumans extends ArrayList {
         }
         return result;
     }
-    // Поиск по атрибуту адреса
+    /*
+      Поиск по атрибуту адреса
+    */
     public ArrayHumans searchByAddress(String address){
         ArrayHumans result = new ArrayHumans();
         for(Object i : this){
@@ -38,7 +42,9 @@ public class ArrayHumans extends ArrayList {
         }
         return result;
     }
-    //Поиск людей, с датой рождения винтервале
+    /*
+      Поиск людей, с датой рождения винтервале
+    */
     public ArrayHumans searchByBirth(Calendar after, Calendar before){
         ArrayHumans result = new ArrayHumans();
         for(Object i : this) {
@@ -48,7 +54,9 @@ public class ArrayHumans extends ArrayList {
         }
         return result;
     }
-    // Поиск самого молодого человека в массиве
+    /*
+      Поиск самого молодого человека в массиве
+    */
     public Human searchYoung(){
         Human young = (Human) this.get(0);
         Calendar date = young.getDateOfBirth();
@@ -60,7 +68,9 @@ public class ArrayHumans extends ArrayList {
         }
         return young;
     }
-    // Поиск самого старого человека в массиве
+    /*
+      Поиск самого старого человека в массиве
+    */
     public Human searchOld(){
         Human old = (Human) this.get(0);
         Calendar date = old.getDateOfBirth();
@@ -72,7 +82,43 @@ public class ArrayHumans extends ArrayList {
         }
         return old;
     }
-    //Возвращает массив в string
+    /*
+      Ищет людей проживающих на одной улице
+      1. Отбирает уникальные адреса и записывает количество людей,
+         проживающиъ на одной улице
+      2. Просматривает сколько людей живет на улице, если более 1,
+         то выводит имена
+    */
+    public void searchHumanStreet(){
+        HashMap<String, Integer> st = new HashMap<>();
+        for(Object i : this){
+            if(st.containsKey(getStreet(((Human) i).getAddress()))){
+                st.put(getStreet(((Human) i).getAddress()), st.get(getStreet(((Human) i).getAddress())) + 1);
+            }
+            else{
+                st.put(getStreet(((Human) i).getAddress()), 1);
+            }
+        }
+        for(String i : st.keySet()){
+            if(st.get(i) > 1){
+                System.out.println("На одной улице живут");
+                for (Object j : this){
+                    if(getStreet(((Human) j).getAddress()).equals(i))
+                        System.out.println(((Human) j).getName() + " " + ((Human) j).getLastName());
+                }
+                System.out.println();
+            }
+        }
+    }
+    /*
+      Вспомогательная функция, оставляет в адресе страну, город и улицу
+    */
+    private String getStreet(Address ad){
+       return ad.getFullAddress().substring(0, ad.getFullAddress().lastIndexOf(","));
+    }
+    /*
+      Возвращает массив в string
+    */
     public String infoToString(){
         String result = "";
         for(Object i : this) {

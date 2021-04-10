@@ -48,7 +48,9 @@ public class Address {
     public String getHouseNumber() {
         return houseNumber;
     }
-    //Возвращает полный адрес в string
+    /*
+      Возвращает полный адрес в string
+    */
     public String getFullAddress(){
         String result = getCountry() + "," + getCity() + "," + getStreet() + "," + getHouseNumber();
         return result;
